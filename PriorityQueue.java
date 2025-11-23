@@ -2,7 +2,7 @@
 /******************************************************************
  *
  *   YOUR NAME / SECTION NUMBER
- *
+ *   Edgar Sanchez / 002
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
  *
@@ -152,6 +152,13 @@ class PriorityQueue<E, P> {
     public Node add(E e, P priority) {
 
         // YOUR CODE GOES HERE
+        // create a new node
+        Node node = new Node(e, priority, tree.size());
+        // put the node into the tree
+        tree.add(node);
+        
+        
+        
         return null;
     }
 
