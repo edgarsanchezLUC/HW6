@@ -68,7 +68,26 @@ public class ProblemSolutions {
       //
       // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
       //
-      return -1;
+      PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+
+      // add to pq
+      for (int boulder : boulders) {
+        pq.add(boulder);
+      }
+      
+
+      while (pq.size() > 1) {
+        int x = pq.poll();
+        int y = pq.poll();
+
+        if (x != y) {
+            pq.add(x-y);
+        }
+      }
+      if (pq.size() == 0) {
+        return 0;
+      }
+      return pq.peek();
   }
 
 
@@ -94,7 +113,24 @@ public class ProblemSolutions {
         //
         //  YOUR CODE GOES HERE
         //
-        return new ArrayList<>();  // Make sure result is sorted in ascending order
+        // use a set to get unique strings
+        HashSet<String> seen = new HashSet<>();
+        // make another set to get dupe strings
+        HashSet<String> dupes = new HashSet<>();
+
+        for (String s : input) {
+          if (seen.contains(s)) {
+            dupes.add(s);
+          }
+          seen.add(s);
+        }
+
+        // return arraylist
+        ArrayList<String> result = new ArrayList<>(dupes);
+        
+        Collections.sort(result);
+
+        return result;  // Make sure result is sorted in ascending order
 
     }
 
@@ -134,6 +170,27 @@ public class ProblemSolutions {
         //
         //  YOUR CODE GOES HERE
         //
-        return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
+        HashSet<Integer> numbers = new HashSet<>();
+
+        for (int n : input) {
+          numbers.add(n);
+        }
+
+        HashSet<String> pairs = new HashSet<>();
+
+        for (int a : input) {
+          int b = k - a;
+
+          if (numbers.contains(b)) {
+            int low = Math.min(a,b);
+            int high = Math.max(a,b);
+
+            String s = "(" + low + ", " + high + ")";
+            pairs.add(s);
+          }
+        }
+        ArrayList<String> resultPairs = new ArrayList<>(pairs);
+        Collections.sort(resultPairs);
+        return resultPairs;  // Make sure returned lists is sorted as indicated above
     }
 }
